@@ -22,7 +22,7 @@ namespace Baze_projekat.ViewModels
         public Button Btn { get; set; }
         private bool IsEdit = false;
 
-        private string firstName;
+        private string firstName="";
 
         public string FirstName
         {
@@ -37,7 +37,7 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-        private string lastName;
+        private string lastName = "";
 
         public string LastName
         {
@@ -227,171 +227,190 @@ namespace Baze_projekat.ViewModels
             Employees = new ObservableCollection<Employee>(DataRepository.Instance.GetEmployees());
         }
 
+        private bool Validate()
+        {
+            bool retVal = true;
+            if (firstName == "" || lastName == "" || Type == null || Club == null || Facility == null || salary==0)
+            {
+                retVal = false;
+            }
+
+            
+            return retVal;
+        }
         private void OnAdd()
         {
-            if (!IsEdit)
+            if (Validate())
             {
-                if (Type == "Economist")
+                if (!IsEdit)
                 {
-                    Economist e = new Economist()
+                    if (Type == "Economist")
                     {
-                        FirstName = FirstName,
-                        LastName = LastName,
-                        Salary = Salary,
-                        Type = Type
-                    };
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        e.BasketballClub = bc;
+                        Economist e = new Economist()
+                        {
+                            FirstName = FirstName,
+                            LastName = LastName,
+                            Salary = Salary,
+                            Type = Type
+                        };
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            e.BasketballClub = bc;
+                        }
+                        if (facility != null && facility != "")
+                        {
+                            Arena f = (Arena)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
+                            e.Arena = f;
+                        }
+                        if (DataRepository.Instance.AddEmployee(e))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
                     }
-                    if(facility != null && facility != "")
+                    else if (type == "Seller")
                     {
-                        Arena f = (Arena)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
-                        e.Arena = f;
+                        Seller e = new Seller()
+                        {
+                            FirstName = FirstName,
+                            LastName = LastName,
+                            Salary = Salary,
+                            Type = Type
+                        };
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            e.BasketballClub = bc;
+                        }
+                        if (facility != null && facility != "")
+                        {
+                            Shop f = (Shop)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
+                            e.Shop = f;
+                        }
+                        if (DataRepository.Instance.AddEmployee(e))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
                     }
-                    if (DataRepository.Instance.AddEmployee(e))
+                    else if (type == "Medical staff")
                     {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
+                        MedicalStaff e = new MedicalStaff()
+                        {
+                            FirstName = FirstName,
+                            LastName = LastName,
+                            Salary = Salary,
+                            Type = Type
+                        };
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            e.BasketballClub = bc;
+                        }
+                        if (facility != null && facility != "")
+                        {
+                            MedicalCenter f = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
+                            e.MedicalCenter = f;
+                        }
+                        if (DataRepository.Instance.AddEmployee(e))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
+                    }
+
+                }
+                else
+                {
+                    IsEdit = false;
+                    if (Type == "Economist")
+                    {
+                        var emp = (Economist)Employee;
+                        emp.FirstName = FirstName;
+                        emp.LastName = FirstName;
+                        emp.Salary = Salary;
+
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            emp.BasketballClub = bc;
+                        }
+                        if (facility != null && facility != "")
+                        {
+                            Arena f = (Arena)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
+                            emp.Arena = f;
+                        }
+                        if (DataRepository.Instance.EditEmployee(emp))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else if (type == "Seller")
+                    {
+                        var emp = (Seller)Employee;
+                        emp.FirstName = FirstName;
+                        emp.LastName = FirstName;
+                        emp.Salary = Salary;
+
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            emp.BasketballClub = bc;
+                        }
+                        if (facility != null && facility != "")
+                        {
+                            Shop f = (Shop)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
+                            emp.Shop = f;
+                        }
+                        if (DataRepository.Instance.EditEmployee(emp))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else if (type == "Medical staff")
+                    {
+                        var emp = (MedicalStaff)Employee;
+                        emp.FirstName = FirstName;
+                        emp.LastName = FirstName;
+                        emp.Salary = Salary;
+
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            emp.BasketballClub = bc;
+                        }
+                        if (facility != null && facility != "")
+                        {
+                            MedicalCenter f = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
+                            emp.MedicalCenter = f;
+                        }
+                        if (DataRepository.Instance.EditEmployee(emp))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
                     }
                 }
-                else if(type == "Seller")
-                {
-                    Seller e = new Seller()
-                    {
-                        FirstName = FirstName,
-                        LastName = LastName,
-                        Salary = Salary,
-                        Type = Type
-                    };
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        e.BasketballClub = bc;
-                    }
-                    if (facility != null && facility != "")
-                    {
-                        Shop f = (Shop)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
-                        e.Shop = f;
-                    }
-                    if (DataRepository.Instance.AddEmployee(e))
-                    {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
-                    }
-                }
-                else if(type == "Medical staff")
-                {
-                    MedicalStaff e = new MedicalStaff()
-                    {
-                        FirstName = FirstName,
-                        LastName = LastName,
-                        Salary = Salary,
-                        Type = Type
-                    };
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        e.BasketballClub = bc;
-                    }
-                    if (facility != null && facility != "")
-                    {
-                        MedicalCenter f = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
-                        e.MedicalCenter = f;
-                    }
-                    if (DataRepository.Instance.AddEmployee(e))
-                    {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
-                    }
-                }
-                
             }
             else
             {
-                IsEdit = false;
-                if (Type == "Economist")
-                {
-                    var emp = (Economist)Employee;
-                    emp.FirstName = FirstName;
-                    emp.LastName = FirstName;
-                    emp.Salary = Salary;
-                    
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        emp.BasketballClub = bc;
-                    }
-                    if (facility != null && facility != "")
-                    {
-                        Arena f = (Arena)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
-                        emp.Arena = f;
-                    }
-                    if (DataRepository.Instance.EditEmployee(emp))
-                    {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
-                    }
-                }
-                else if (type == "Seller")
-                {
-                    var emp = (Seller)Employee;
-                    emp.FirstName = FirstName;
-                    emp.LastName = FirstName;
-                    emp.Salary = Salary;
 
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        emp.BasketballClub = bc;
-                    }
-                    if (facility != null && facility != "")
-                    {
-                        Shop f = (Shop)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
-                        emp.Shop = f;
-                    }
-                    if (DataRepository.Instance.EditEmployee(emp))
-                    {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
-                    }
-                }
-                else if (type == "Medical staff")
-                {
-                    var emp = (MedicalStaff)Employee;
-                    emp.FirstName = FirstName;
-                    emp.LastName = FirstName;
-                    emp.Salary = Salary;
-
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        emp.BasketballClub = bc;
-                    }
-                    if (facility != null && facility != "")
-                    {
-                        MedicalCenter f = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(facility.Split(' ')[0]));
-                        emp.MedicalCenter = f;
-                    }
-                    if (DataRepository.Instance.EditEmployee(emp))
-                    {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
-                    }
-                }
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnEdit()
@@ -424,9 +443,16 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeleteEmployee(Employee.Id);
-                GetData();
-                
+                try
+                {
+                    DataRepository.Instance.DeleteEmployee(Employee.Id);
+                    GetData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
             }
         }
         private void OnShow()

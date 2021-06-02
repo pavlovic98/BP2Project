@@ -23,7 +23,7 @@ namespace Baze_projekat.ViewModels
         public Button Btn { get; set; }
         private bool IsEdit = false;
 
-        private string firstName;
+        private string firstName="";
 
         public string FirstName
         {
@@ -38,7 +38,7 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-        private string lastName;
+        private string lastName="";
 
         public string LastName
         {
@@ -53,7 +53,7 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-        private string age;
+        private string age="";
 
         public string Age
         {
@@ -168,6 +168,16 @@ namespace Baze_projekat.ViewModels
             SelectedPlayer = null;
         }
 
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(FirstName=="" || LastName=="" || Age=="" || Salary == 0 || Club == null)
+            {
+                retVal = false;
+            }
+            return retVal;
+        }
+
         private void OnShow()
         {
            
@@ -176,49 +186,57 @@ namespace Baze_projekat.ViewModels
         }
         private void OnAdd()
         {
-            if (!IsEdit)
+            if (Validate())
             {
-                Player player = new Player()
+                if (!IsEdit)
                 {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Age = age,
-                    Salary = salary
-                };
-                if (club != null)
-                {
-                    BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                    if (bc != null)
+                    Player player = new Player()
                     {
-                        player.BasketballClub = bc;
+                        FirstName = firstName,
+                        LastName = lastName,
+                        Age = age,
+                        Salary = salary
+                    };
+                    if (club != null)
+                    {
+                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                        if (bc != null)
+                        {
+                            player.BasketballClub = bc;
+                        }
+                    }
+                    if (DataRepository.Instance.AddPlayer(player))
+                    {
+                        GetData();
+                        Reset();
+                        Box.Visibility = Visibility.Hidden;
+                        Btn.Visibility = Visibility.Visible;
                     }
                 }
-                if (DataRepository.Instance.AddPlayer(player))
+                else
                 {
-                    GetData();
-                    Reset();
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
+                    IsEdit = false;
+                    SelectedPlayer.FirstName = FirstName;
+                    SelectedPlayer.LastName = LastName;
+                    SelectedPlayer.Age = Age;
+                    SelectedPlayer.Salary = Salary;
+                    if (club != null && club != "")
+                    {
+                        SelectedPlayer.BasketballClub = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                    }
+                    if (DataRepository.Instance.EditPlayer(SelectedPlayer))
+                    {
+                        Reset();
+                        GetData();
+                        Box.Visibility = Visibility.Hidden;
+                        Btn.Visibility = Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                IsEdit = false;
-                SelectedPlayer.FirstName = FirstName;
-                SelectedPlayer.LastName = LastName;
-                SelectedPlayer.Age = Age;
-                SelectedPlayer.Salary = Salary;
-                if(club != null && club != "")
-                {
-                    SelectedPlayer.BasketballClub = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                }
-                if(DataRepository.Instance.EditPlayer(SelectedPlayer))
-                {
-                    Reset();
-                    GetData();
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
-                }
+
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnDelete()
@@ -226,9 +244,16 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeletePlayer(selectedPlayer.Id);
-                GetData();
-                Reset();
+                try
+                {
+                    DataRepository.Instance.DeletePlayer(selectedPlayer.Id);
+                    GetData();
+                    Reset();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

@@ -114,45 +114,61 @@ namespace Baze_projekat.ViewModels
         {
             PlayerCenters = new ObservableCollection<PlayerCenter>(DataRepository.Instance.GetPlayerCenters());
         }
-
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Player == null || Centar == null)
+            {
+                retVal = false;
+            }
+            return retVal;
+        }
         private void OnAdd()
         {
-            if (!IsEdit)
+            if (Validate())
             {
-                PlayerCenter pc = new PlayerCenter();
-                Player p = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
-                MedicalCenter mc = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(Centar.Split(' ')[0]));
-                pc.Player = p;
-                pc.MedicalCenter = mc;
-                if (DataRepository.Instance.AddPlayerCenter(pc))
+                if (!IsEdit)
                 {
-                    GetData();
-                    Player = null;
-                    Centar = null;
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
+                    PlayerCenter pc = new PlayerCenter();
+                    Player p = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
+                    MedicalCenter mc = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(Centar.Split(' ')[0]));
+                    pc.Player = p;
+                    pc.MedicalCenter = mc;
+                    if (DataRepository.Instance.AddPlayerCenter(pc))
+                    {
+                        GetData();
+                        Player = null;
+                        Centar = null;
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Already exist", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Already exist", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                    IsEdit = false;
+                    Player p = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
+                    MedicalCenter mc = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(Centar.Split(' ')[0]));
+                    SelectedPlayerCenter.Player = p;
+                    SelectedPlayerCenter.MedicalCenter = mc;
+
+                    if (DataRepository.Instance.EditPlayerCenter(SelectedPlayerCenter))
+                    {
+                        GetData();
+                        Player = null;
+                        Centar = null;
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                IsEdit = false;
-                Player p = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
-                MedicalCenter mc = (MedicalCenter)DataRepository.Instance.GetFacility(Int32.Parse(Centar.Split(' ')[0]));
-                SelectedPlayerCenter.Player = p;
-                SelectedPlayerCenter.MedicalCenter = mc;
 
-                if (DataRepository.Instance.EditPlayerCenter(SelectedPlayerCenter))
-                {
-                    GetData();
-                    Player = null;
-                    Centar = null;
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
-                }
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnEdit()
@@ -172,9 +188,16 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeletePlayerCenter(SelectedPlayerCenter.Id);
-                GetData();
-                
+                try
+                {
+                    DataRepository.Instance.DeletePlayerCenter(SelectedPlayerCenter.Id);
+                    GetData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
             }
         }
         private void OnShow()

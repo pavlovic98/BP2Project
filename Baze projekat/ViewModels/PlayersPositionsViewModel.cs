@@ -114,42 +114,59 @@ namespace Baze_projekat.ViewModels
 
         private void OnAdd()
         {
-            if(!IsEdit)
+            if (Validate())
             {
-                PlayerPosition pp = new PlayerPosition();
-                Player player = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
-                Position position = DataRepository.Instance.GetPosition(Int32.Parse(Position.Split(' ')[0]));
-                pp.Player = player;
-                pp.Position = position;
-                if(DataRepository.Instance.AddPlayerPosition(pp))
+                if (!IsEdit)
                 {
-                    GetData();
-                    Player = null;
-                    Position = null;
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
+                    PlayerPosition pp = new PlayerPosition();
+                    Player player = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
+                    Position position = DataRepository.Instance.GetPosition(Int32.Parse(Position.Split(' ')[0]));
+                    pp.Player = player;
+                    pp.Position = position;
+                    if (DataRepository.Instance.AddPlayerPosition(pp))
+                    {
+                        GetData();
+                        Player = null;
+                        Position = null;
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Already exist", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Already exist","Info",MessageBoxButton.OK,MessageBoxImage.Error);
+                    IsEdit = false;
+                    Player player = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
+                    Position position = DataRepository.Instance.GetPosition(Int32.Parse(Position.Split(' ')[0]));
+                    SelectedPlayerPosition.Player = player;
+                    SelectedPlayerPosition.Position = position;
+                    if (DataRepository.Instance.EditPlayerPosition(SelectedPlayerPosition))
+                    {
+                        GetData();
+                        Player = null;
+                        Position = null;
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                IsEdit = false;
-                Player player = DataRepository.Instance.GetPlayer(Int32.Parse(Player.Split(' ')[0]));
-                Position position = DataRepository.Instance.GetPosition(Int32.Parse(Position.Split(' ')[0]));
-                SelectedPlayerPosition.Player = player;
-                SelectedPlayerPosition.Position = position;
-                if(DataRepository.Instance.EditPlayerPosition(SelectedPlayerPosition))
-                {
-                    GetData();
-                    Player = null;
-                    Position = null;
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
-                }
+
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Player == null || Position == null)
+            {
+                retVal = false;
+            }
+            return retVal;
         }
         private void OnEdit()
         {
@@ -167,9 +184,16 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeletePlayerPosition(SelectedPlayerPosition.Id);
-                GetData();
-                SelectedPlayerPosition = null;                
+                try
+                {
+                    DataRepository.Instance.DeletePlayerPosition(SelectedPlayerPosition.Id);
+                    GetData();
+                    SelectedPlayerPosition = null;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
         private void OnShow()

@@ -115,45 +115,68 @@ namespace Baze_projekat.ViewModels
 
         private void OnAdd()
         {
-            if (!IsEdit)
+            if (Validate())
             {
-                ClubLeague l = new ClubLeague();
-                League league = DataRepository.Instance.GetLeague(Int32.Parse(League.Split(' ')[0]));
-                BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(Club.Split(' ')[0]));
-                l.BasketballClub = bc;
-                l.League = league;
-               
-                if (DataRepository.Instance.AddClubLeague(l))
+                if (!IsEdit)
                 {
-                    GetData();
-                    Club = null;
-                    League = null;
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
+                    ClubLeague l = new ClubLeague();
+                    League league = DataRepository.Instance.GetLeague(Int32.Parse(League.Split(' ')[0]));
+                    BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(Club.Split(' ')[0]));
+                    l.BasketballClub = bc;
+                    l.League = league;
+                    bool find = false;
+                    foreach (var item in DataRepository.Instance.GetLicenses())
+                    {
+                        if(item.LeagueId == league.Id && item.BasketballClubId == bc.Id)
+                        {
+                            find = true;
+                        }
+                    }
+                    if (find)
+                    {
+                        if (DataRepository.Instance.AddClubLeague(l))
+                        {
+                            GetData();
+                            Club = null;
+                            League = null;
+                            Box.Visibility = System.Windows.Visibility.Hidden;
+                            Btn.Visibility = System.Windows.Visibility.Visible;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Already exist", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Club dont have license", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Already exist","Info",MessageBoxButton.OK, MessageBoxImage.Error);
+                    IsEdit = false;
+                    League league = DataRepository.Instance.GetLeague(Int32.Parse(League.Split(' ')[0]));
+                    BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(Club.Split(' ')[0]));
+
+                    SelectedClubLeague.BasketballClub = bc;
+                    SelectedClubLeague.League = league;
+
+
+                    if (DataRepository.Instance.EditClubLeague(SelectedClubLeague))
+                    {
+                        GetData();
+                        Club = null;
+                        League = null;
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                IsEdit = false;
-                League league = DataRepository.Instance.GetLeague(Int32.Parse(League.Split(' ')[0]));
-                BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(Club.Split(' ')[0]));
 
-                SelectedClubLeague.BasketballClub = bc;
-                SelectedClubLeague.League = league;
-                
-
-                if (DataRepository.Instance.EditClubLeague(SelectedClubLeague))
-                {
-                    GetData();
-                    Club = null;
-                    League = null;
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
-                }
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnEdit()
@@ -172,10 +195,27 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeleteClubLeague(SelectedClubLeague.Id);
-                GetData();
-                SelectedClubLeague = null;
+                try
+                {
+                    DataRepository.Instance.DeleteClubLeague(SelectedClubLeague.Id);
+                    GetData();
+                    SelectedClubLeague = null;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
+        }
+
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Club == null || League == null)
+            {
+                retVal = false;
+            }
+            return retVal;
         }
         private void OnShow()
         {

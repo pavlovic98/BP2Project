@@ -66,7 +66,15 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Positions.Count >= 5 || Name == "")
+            {
+                retVal = false;
+            }
+            return retVal;
+        }
         public PositionsViewModel()
         {
             AddCommand = new MyICommand(OnAdd);
@@ -82,36 +90,44 @@ namespace Baze_projekat.ViewModels
         }
         private void OnAdd()
         {
-            if(!IsEdit)
+            if (Validate())
             {
-                Position p = new Position()
+                if (!IsEdit)
                 {
-                    Name = Name
-                };
+                    Position p = new Position()
+                    {
+                        Name = Name
+                    };
 
-                if(DataRepository.Instance.AddPosition(p))
-                {
-                    GetData();
-                    Name = "";
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
+                    if (DataRepository.Instance.AddPosition(p))
+                    {
+                        GetData();
+                        Name = "";
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Positions already exist!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Positions already exist!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                    IsEdit = false;
+                    SelectedPosition.Name = Name;
+                    if (DataRepository.Instance.EditPosition(SelectedPosition))
+                    {
+                        GetData();
+                        Name = "";
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                IsEdit = false;
-                SelectedPosition.Name = Name;
-                if(DataRepository.Instance.EditPosition(SelectedPosition))
-                {
-                    GetData();
-                    Name = "";
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
-                }
+
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnEdit()
@@ -127,8 +143,15 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeletePosition(selectedPosition.Id);
-                GetData();
+                try
+                {
+                    DataRepository.Instance.DeletePosition(selectedPosition.Id);
+                    GetData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
         private void OnShow()

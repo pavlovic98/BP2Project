@@ -1,0 +1,86 @@
+Procedura za dodavanje kluba u neku ligu
+ALTER PROCEDURE [dbo].[P_INS_ClubInLeague]
+(
+	@P_Club_Name NVARCHAR(max),
+	@P_League_Name NVARCHAR(max)
+)
+
+AS
+
+BEGIN TRY
+	DECLARE @P_Club_Id INT
+	DECLARE @P_League_Id INT
+	
+	SET @P_Club_Id =
+	(
+		SELECT Id
+		FROM dbo.BasketballClubs
+		WHERE Name = @P_Club_Name
+	)
+
+	SET @P_League_Id =
+	(
+		SELECT Id
+		FROM dbo.Leagues
+		WHERE Name = @P_League_Name
+	)
+	INSERT INTO dbo.ClubLeagues(BasketballClubId, LeagueId)
+	VALUES(@P_Club_Id,@P_League_Id); 
+
+END TRY
+
+BEGIN CATCH
+	SELECT
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+####################################################################################
+procedura koja ispisuje sve klubove
+
+ALTER procedure [dbo].[P_Print_Clubs]
+AS
+declare player_cursor cursor for select Name from dbo.BasketballClubs;
+declare @val NVARCHAR(max)
+BEGIN
+	open player_cursor;
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			print @val
+			fetch next from player_cursor into @val 
+		END
+		close player_cursor
+		deallocate player_cursor
+END
+####################################################################################
+Funkcija koja za odredjenu ligu i klub vraca id licence
+
+alter FUNCTION F_License_Id
+(
+	@P_League_Name NVARCHAR(max),
+	@P_Club_Name NVARCHAR(max)
+)
+RETURNS int
+
+AS
+
+BEGIN
+	DECLARE @return_value int
+
+	SET @return_value =
+	(
+		SELECT Id
+		FROM dbo.Licenses
+		WHERE BasketballClubId = ( SELECT Id FROM dbo.BasketballClubs WHERE Name = @P_Club_Name) 
+		and LeagueId  = ( SELECT Id  FROM dbo.Leagues where Name = @P_League_Name)
+	)
+	RETURN @return_value
+END;
+#############################################################################
+
+Indeks id za tabelu Matches
+CREATE NONCLUSTERED INDEX [NonClusteredIndex-20210602-220047] ON [dbo].[Matches]
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, 
+SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON,
+ ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

@@ -23,7 +23,7 @@ namespace Baze_projekat.ViewModels
         public Button Btn { get; set; }
         private bool IsEdit = false;
 
-        private string name;
+        private string name="";
 
         public string Name
         {
@@ -105,35 +105,53 @@ namespace Baze_projekat.ViewModels
             Name = "";
             Number = 0;
         }
+
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Name =="" || number == 0)
+            {
+                retVal = false;
+            }
+            return retVal;
+        }
         private void OnAdd()
         {
-            if(!IsEdit)
+            if (Validate())
             {
-                League l = new League()
+                if (!IsEdit)
                 {
-                    Name = Name,
-                    NumberOfClubs = Number
-                };
-                if(DataRepository.Instance.AddLeague(l))
+                    League l = new League()
+                    {
+                        Name = Name,
+                        NumberOfClubs = Number
+                    };
+                    if (DataRepository.Instance.AddLeague(l))
+                    {
+                        GetData();
+                        Reset();
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
+                }
+                else
                 {
-                    GetData();
-                    Reset();
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
+                    IsEdit = false;
+                    SelectedLeague.Name = Name;
+                    SelectedLeague.NumberOfClubs = Number;
+                    if (DataRepository.Instance.EditLeague(SelectedLeague))
+                    {
+                        GetData();
+                        Reset();
+                        Box.Visibility = System.Windows.Visibility.Hidden;
+                        Btn.Visibility = System.Windows.Visibility.Visible;
+                    }
                 }
             }
             else
             {
-                IsEdit = false;
-                SelectedLeague.Name = Name;
-                SelectedLeague.NumberOfClubs = Number;
-                if(DataRepository.Instance.EditLeague(SelectedLeague))
-                {
-                    GetData();
-                    Reset();
-                    Box.Visibility = System.Windows.Visibility.Hidden;
-                    Btn.Visibility = System.Windows.Visibility.Visible;
-                }
+
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -154,8 +172,15 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeleteLeague(SelectedLeague.Id);
-                GetData();
+                try
+                {
+                    DataRepository.Instance.DeleteLeague(SelectedLeague.Id);
+                    GetData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

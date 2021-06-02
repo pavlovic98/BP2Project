@@ -69,7 +69,7 @@ namespace Baze_projekat.ViewModels
         }
 
         public ObservableCollection<string> Arenas { get; set; } = new ObservableCollection<string>();
-        private string host;
+        private string host="";
 
         public string Host
         {
@@ -98,7 +98,7 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-        private string date;
+        private string date="";
 
         public string Date
         {
@@ -113,7 +113,7 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-        private string result;
+        private string result="";
 
         public string Result
         {
@@ -167,6 +167,16 @@ namespace Baze_projekat.ViewModels
             Arena = null;
         }
 
+
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Date == "" || Result == "" || Guest == null || Host == null || Arena == null)
+            {
+                retVal = false;
+            }
+            return retVal;
+        }
         private void OnShow()
         {
 
@@ -175,52 +185,60 @@ namespace Baze_projekat.ViewModels
         }
         private void OnAdd()
         {
-            if (!IsEdit)
+            if (Validate())
             {
-                Match match = new Match()
+                if (!IsEdit)
                 {
-                    Result = Result,
-                    Date = Date,
-                    Host = Host,
-                    Guest = Guest
-                };
-                var arena = DataRepository.Instance.GetFacility(Int32.Parse(Arena.Split(' ')[0]));
-                if (arena != null)
-                {
-                    match.Arena = arena as Arena;
-                }
-                if (DataRepository.Instance.AddMatch(match))
-                {
-                    GetData();
-                    Reset();
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
-                }
-            }
-            else
-            {
-                IsEdit = false;
-                
-                Match.Date = Date;  
-                Match.Host = Host;  
-                Match.Guest = Guest;  
-                Match.Result = Result;  
-                 
-                if (Arena != null && Arena != "")
-                {
+                    Match match = new Match()
+                    {
+                        Result = Result,
+                        Date = Date,
+                        Host = Host,
+                        Guest = Guest
+                    };
                     var arena = DataRepository.Instance.GetFacility(Int32.Parse(Arena.Split(' ')[0]));
                     if (arena != null)
                     {
                         match.Arena = arena as Arena;
                     }
+                    if (DataRepository.Instance.AddMatch(match))
+                    {
+                        GetData();
+                        Reset();
+                        Box.Visibility = Visibility.Hidden;
+                        Btn.Visibility = Visibility.Visible;
+                    }
                 }
-                if (DataRepository.Instance.EditMatch(Match))
+                else
                 {
-                    Reset();
-                    GetData();
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
+                    IsEdit = false;
+
+                    Match.Date = Date;
+                    Match.Host = Host;
+                    Match.Guest = Guest;
+                    Match.Result = Result;
+
+                    if (Arena != null && Arena != "")
+                    {
+                        var arena = DataRepository.Instance.GetFacility(Int32.Parse(Arena.Split(' ')[0]));
+                        if (arena != null)
+                        {
+                            match.Arena = arena as Arena;
+                        }
+                    }
+                    if (DataRepository.Instance.EditMatch(Match))
+                    {
+                        Reset();
+                        GetData();
+                        Box.Visibility = Visibility.Hidden;
+                        Btn.Visibility = Visibility.Visible;
+                    }
                 }
+            }
+            else
+            {
+
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnDelete()
@@ -228,9 +246,16 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeleteMatch(Match.Id);
-                GetData();
-                Reset();
+                try
+                {
+                    DataRepository.Instance.DeleteMatch(Match.Id);
+                    GetData();
+                    Reset();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 

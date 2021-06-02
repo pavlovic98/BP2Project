@@ -21,7 +21,7 @@ namespace Baze_projekat.ViewModels
         public GroupBox Box { get; set; }
         public Button Btn { get; set; }
         private bool IsEdit = false;
-        private string name;
+        private string name="";
 
         public string Name
         {
@@ -101,7 +101,9 @@ namespace Baze_projekat.ViewModels
         }
         private void GetData()
         {
+
             Clubs = new ObservableCollection<BasketballClub>(DataRepository.Instance.GetClubs());
+            Supperiors.Clear();
             foreach (var item in Clubs)
             {
                 Supperiors.Add(item.Id+" "+item.Name);
@@ -130,60 +132,91 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res =  MessageBox.Show("Do you want to delete item","Info",MessageBoxButton.YesNo,MessageBoxImage.Question); 
             if(res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeleteCLub(selectedClub.Id);
-                selectedClub = null;
-                GetData();
+                try
+                {
+                    DataRepository.Instance.DeleteCLub(selectedClub.Id);
+                    selectedClub = null;
+                    GetData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete","Info",MessageBoxButton.OK,MessageBoxImage.Information);
+                }
+                
             }
+        }
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Name == "")
+            {
+                retVal = false;
+            }
+            if(Supperior != null && Supperior != "")
+            {
+                var c = DataRepository.Instance.GetClub(Int32.Parse(supperior.Split(' ')[0]));
+                if (c == null)
+                {
+                    retVal = false;   
+                }
+            }
+            return retVal;
         }
         private void OnAdd()
         {
-            if (!IsEdit)
+            if (Validate())
             {
-                BasketballClub club = new BasketballClub()
+                if (!IsEdit)
                 {
-                    Name = Name
-                };
-                if (supperior != "" && supperior != null)
-                {
-                    var c = DataRepository.Instance.GetClub(Int32.Parse(supperior.Split(' ')[0]));
-                    if (c != null)
+                    BasketballClub club = new BasketballClub()
                     {
-                        club.SupperiorClub = c;
+                        Name = Name
+                    };
+                    if (supperior != "" && supperior != null)
+                    {
+                        var c = DataRepository.Instance.GetClub(Int32.Parse(supperior.Split(' ')[0]));
+                        if (c != null)
+                        {
+                            club.SupperiorClub = c;
+                        }
                     }
-                }
-                if (DataRepository.Instance.AddClub(club))
-                {
-                    GetData();
-                    Name = "";
-                    Supperior = null;
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
+                    if (DataRepository.Instance.AddClub(club))
+                    {
+                        GetData();
+                        Name = "";
+                        Supperior = null;
+                        Box.Visibility = Visibility.Hidden;
+                        Btn.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Name is taken", "INFO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Name is taken", "INFO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    IsEdit = false;
+                    SelectedCLub.Name = Name;
+                    if (supperior != null && Supperior != "")
+                    {
+                        SelectedCLub.SupperiorClub = DataRepository.Instance.GetClub(Int32.Parse(Supperior.Split(' ')[0]));
+                    }
+                    if (DataRepository.Instance.EditClub(SelectedCLub))
+                    {
+
+                        GetData();
+                        Name = "";
+                        Supperior = "";
+                        Box.Visibility = Visibility.Hidden;
+                        Btn.Visibility = Visibility.Visible;
+                        SelectedCLub = null;
+                    }
                 }
             }
-            else 
+            else
             {
-                IsEdit = false;
-                SelectedCLub.Name = Name;
-                if(supperior != null && Supperior != "")
-                {
-                    SelectedCLub.SupperiorClub = DataRepository.Instance.GetClub(Int32.Parse(Supperior.Split(' ')[0]));
-                }
-                if (DataRepository.Instance.EditClub(SelectedCLub))
-                {
-                    
-                    GetData();
-                    Name = "";
-                    Supperior = "";
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
-                    SelectedCLub = null;
-                }
+                MessageBox.Show("Wrong fields values","Info",MessageBoxButton.OK,MessageBoxImage.Error);
             }
-            
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Baze_projekat.ViewModels
         public Button Btn { get; set; }
         public Label lbl { get; set; }
         private bool IsEdit = false;
-        private string name;
+        private string name="";
 
         public string Name
         {
@@ -38,7 +38,7 @@ namespace Baze_projekat.ViewModels
             }
         }
 
-        private string address;
+        private string address="";
 
         public string Address
         {
@@ -149,6 +149,15 @@ namespace Baze_projekat.ViewModels
             Club = null;
         }        
 
+        private bool Validate()
+        {
+            bool retVal = true;
+            if(Name =="" || Address == "" || Type == null || Club == null)
+            {
+                retVal = false;
+            }
+            return retVal;
+        }
         private void OnShow()
         {
 
@@ -157,46 +166,95 @@ namespace Baze_projekat.ViewModels
         }
         private void OnAdd()
         {
-            
-            if (!IsEdit)
+            if (Validate())
             {
-                
-                if(Type == "Shop")
+                if (!IsEdit)
                 {
-                    Shop s = new Shop()
+
+                    if (Type == "Shop")
                     {
-                        Name = Name,
-                        Address = Address,
-                        Type = Type
-                    };
-                    if(club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        s.BasketballClub = bc;
+                        Shop s = new Shop()
+                        {
+                            Name = Name,
+                            Address = Address,
+                            Type = Type
+                        };
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            s.BasketballClub = bc;
+                        }
+                        if (DataRepository.Instance.AddFacility(s))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
                     }
-                    if (DataRepository.Instance.AddFacility(s))
+                    else if (type == "Arena")
                     {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
+                        Arena a = new Arena()
+                        {
+                            Name = Name,
+                            Address = Address,
+                            Type = Type,
+
+                        };
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            a.BasketballClub = bc;
+                        }
+                        if (DataRepository.Instance.AddFacility(a))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
+
+
                     }
+                    else if (Type == "Medical center")
+                    {
+                        MedicalCenter mc = new MedicalCenter()
+                        {
+                            Name = Name,
+                            Address = Address,
+                            Type = Type
+                        };
+                        if (club != null && club != "")
+                        {
+                            BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
+                            mc.BasketballClub = bc;
+                        }
+                        if (DataRepository.Instance.AddFacility(mc))
+                        {
+                            GetData();
+                            Reset();
+                            Box.Visibility = Visibility.Hidden;
+                            Btn.Visibility = Visibility.Visible;
+                        }
+                    }
+
                 }
-                else if(type == "Arena")
+                else
                 {
-                    Arena a = new Arena()
+                    IsEdit = false;
+                    Combo.Visibility = Visibility.Visible;
+                    lbl.Visibility = Visibility.Visible;
+                    SelectedFacility.Name = Name;
+                    SelectedFacility.Address = Address;
+                    if (Club != null && Club != "")
                     {
-                        Name = Name,
-                        Address = Address,
-                        Type = Type,
-                        
-                    };
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        a.BasketballClub = bc;
+                        var bc = DataRepository.Instance.GetClub(Int32.Parse(Club.Split(' ')[0]));
+                        if (bc != null)
+                        {
+                            SelectedFacility.BasketballClub = bc;
+                        }
                     }
-                    if (DataRepository.Instance.AddFacility(a))
+                    if (DataRepository.Instance.EditFacility(SelectedFacility))
                     {
                         GetData();
                         Reset();
@@ -204,54 +262,12 @@ namespace Baze_projekat.ViewModels
                         Btn.Visibility = Visibility.Visible;
                     }
 
-
                 }
-                else if(Type == "Medical center")
-                {
-                    MedicalCenter mc = new MedicalCenter()
-                    {
-                        Name = Name,
-                        Address = Address,
-                        Type = Type
-                    };
-                    if (club != null && club != "")
-                    {
-                        BasketballClub bc = DataRepository.Instance.GetClub(Int32.Parse(club.Split(' ')[0]));
-                        mc.BasketballClub = bc;
-                    }
-                    if (DataRepository.Instance.AddFacility(mc))
-                    {
-                        GetData();
-                        Reset();
-                        Box.Visibility = Visibility.Hidden;
-                        Btn.Visibility = Visibility.Visible;
-                    }
-                }
-                
             }
             else
             {
-                IsEdit = false;
-                Combo.Visibility = Visibility.Visible;
-                lbl.Visibility = Visibility.Visible;
-                SelectedFacility.Name = Name;
-                SelectedFacility.Address = Address;
-                if(Club != null && Club !="")
-                {
-                    var bc = DataRepository.Instance.GetClub(Int32.Parse(Club.Split(' ')[0]));
-                    if(bc != null)
-                    {
-                        SelectedFacility.BasketballClub = bc;
-                    }
-                }
-                if (DataRepository.Instance.EditFacility(SelectedFacility))
-                {
-                    GetData();
-                    Reset();
-                    Box.Visibility = Visibility.Hidden;
-                    Btn.Visibility = Visibility.Visible;
-                }
 
+                MessageBox.Show("Wrong fields values", "Info", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void OnDelete()
@@ -259,9 +275,16 @@ namespace Baze_projekat.ViewModels
             MessageBoxResult res = MessageBox.Show("Do you want to delete item", "Info", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                DataRepository.Instance.DeleteFacility(SelectedFacility.Id);
-                GetData();
-                Reset();
+                try
+                {
+                    DataRepository.Instance.DeleteFacility(SelectedFacility.Id);
+                    GetData();
+                    Reset();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unable to delete", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 
