@@ -1,0 +1,92 @@
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\MainWindow.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\ClubLeagueView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\CLubsView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\FacilityView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\LeagueView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\LicenseView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\PlayersPositionsView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\PlayersView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\PositionView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\App.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat_MarkupCompile.cache
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat_MarkupCompile.lref
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\Baze projekat.exe.config
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\Baze projekat.exe
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\Baze projekat.pdb
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\DataBase.dll
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\EntityFramework.dll
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\Repository.dll
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\DataBase.pdb
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\DataBase.dll.config
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\Repository.pdb
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\Repository.dll.config
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\EntityFramework.xml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.csprojAssemblyReference.cache
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\MainWindow.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\ClubLeagueView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\CLubsView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\FacilityView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\LeagueView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\LicenseView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\PlayersPositionsView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\PlayersView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Views\PositionView.baml
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.g.resources
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze_projekat.Properties.Resources.resources
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.csproj.GenerateResource.cache
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.csproj.CoreCompileInputs.cache
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.csproj.CopyComplete
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.exe
+C:\Users\Mladen\Desktop\Baze projekat\Baze projekat\obj\Debug\Baze projekat.pdb
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\Baze projekat.exe.config
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\Baze projekat.exe
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\Baze projekat.pdb
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\DataBase.dll
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\EntityFramework.dll
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\Repository.dll
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\DataBase.pdb
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\DataBase.dll.config
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\Repository.pdb
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\Repository.dll.config
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\EntityFramework.xml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.csprojAssemblyReference.cache
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\MainWindow.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\ClubLeagueView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\CLubsView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\FacilityView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\LeagueView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\LicenseView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PlayersPositionsView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PlayersView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PositionView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\App.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat_MarkupCompile.cache
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat_MarkupCompile.lref
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\MainWindow.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\ClubLeagueView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\CLubsView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\FacilityView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\LeagueView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\LicenseView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PlayersPositionsView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PlayersView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PositionView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.g.resources
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze_projekat.Properties.Resources.resources
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.csproj.GenerateResource.cache
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.csproj.CoreCompileInputs.cache
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.csproj.CopyComplete
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.exe
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Baze projekat.pdb
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\MatchsVIew.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\MatchsVIew.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\EmployeesView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\EmployeesView.baml
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PlayerCentarView.g.cs
+C:\Users\Mladen\Desktop\Baze projekat - Copy\Baze projekat\obj\Debug\Views\PlayerCentarView.baml

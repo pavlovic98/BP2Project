@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Baze_projekat.Views.ClubLeagueView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baze_projekat.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas>
+
+        <GroupBox Name="addForm" Header="Add new positons" Width="500" Height="100" Foreground="White" Canvas.Left="20" Visibility="Hidden">
+            <Canvas>
+                <ComboBox HorizontalAlignment="Left" Height="23" ItemsSource="{Binding Clubs}" SelectedItem="{Binding Club}" VerticalAlignment="Top" Width="120" Canvas.Left="128" Canvas.Top="10"/>
+                <Label Content="Player" Canvas.Left="21" Canvas.Top="10"/>
+                <ComboBox HorizontalAlignment="Left" Height="23" ItemsSource="{Binding Leagues}" SelectedItem="{Binding League}" VerticalAlignment="Top" Width="120" Canvas.Left="348" Canvas.Top="10"/>
+                <Label Content="Position" Canvas.Left="281" Canvas.Top="10"/>
+
+                <Button Content="Submit" Command="{Binding AddCommand}" Canvas.Left="203" Canvas.Top="48" Height="25" FontWeight="Bold"/>
+            </Canvas>
+        </GroupBox>
+        <Button x:Name="addBtn" Width="80" Height="30" Cursor="Hand" Command="{Binding ShowCommand}" Canvas.Left="21" Canvas.Top="120">
+            <Image Source="../Images/plus.png"/>
+            <Button.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="White" Offset="0.01"/>
+                    <GradientStop Color="Gray" Offset="0.8"/>
+                    <GradientStop/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <DataGrid Name="dataGridBuses" CanUserResizeRows="False" CanUserSortColumns="True" CanUserReorderColumns="True" SelectedItem="{Binding SelectedClubLeague}" Background="White" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding ClubLeagues}" RowHeight="40" AutoGenerateColumns="False" Height="250" Width="740" Canvas.Left="22" Canvas.Top="159">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Club" Width="*" Binding="{Binding Path=BasketballClub.Name}" FontWeight="Bold">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="League" Width="*" Binding="{Binding Path=League.Name}" FontWeight="Bold">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+
+                <DataGridTemplateColumn Header="" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonEdit" Cursor="Hand" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.EditCommand}">
+                                <Image Source="../Images/edit.png"/>
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="Gray" Offset="1.0"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonDelete" Cursor="Hand" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommand}">
+                                <Image Source="../Images/delete.png"/>
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="Gray" Offset="1.0"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Canvas>
+</UserControl>

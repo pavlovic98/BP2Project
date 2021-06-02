@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="Baze_projekat.Views.MatchsVIew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baze_projekat.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas>
+        <GroupBox Name="addForm" Visibility="Hidden" Header="Add new player" Width="450" Height="180" Foreground="White" Canvas.Left="20">
+            <Canvas>
+                <ComboBox HorizontalAlignment="Left" Height="23" ItemsSource="{Binding HostTeams}" SelectedItem="{Binding Host}" VerticalAlignment="Top" Width="120" Canvas.Left="128" Canvas.Top="29"/>
+                <Label Content="Host" Canvas.Left="21" Canvas.Top="29"/>
+                <ComboBox HorizontalAlignment="Left" Height="23" ItemsSource="{Binding GuestTeams}" SelectedItem="{Binding Guest}" VerticalAlignment="Top" Width="120" Canvas.Left="128" Canvas.Top="59"/>
+                <Label Content="Guest" Canvas.Left="21" Canvas.Top="59"/>
+                <DatePicker HorizontalAlignment="Left" Height="23"  SelectedDate="{Binding Date}" VerticalAlignment="Top" Width="120" Canvas.Left="128" Canvas.Top="90"/>
+                <Label Content="Date" Canvas.Left="21" Canvas.Top="90"/>
+                <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Result}" VerticalAlignment="Top" Width="120" Canvas.Left="310" Canvas.Top="29"/>
+                <Label Content="Result" Canvas.Left="260" Canvas.Top="29"/>
+                <ComboBox HorizontalAlignment="Left" Height="23" ItemsSource="{Binding Arenas}" SelectedItem="{Binding Arena}" VerticalAlignment="Top" Width="120" Canvas.Left="310" Canvas.Top="59"/>
+                <Label Content="Club" Canvas.Left="260" Canvas.Top="59"/>
+                <Button Content="Submit" Command="{Binding AddCommand}" Canvas.Left="203" Canvas.Top="128" Height="25" FontWeight="Bold"/>
+            </Canvas>
+        </GroupBox>
+
+        <Button x:Name="addBtn" Width="80" Height="30" Cursor="Hand" Command="{Binding ShowCommand}" Canvas.Left="21" Canvas.Top="190">
+            <Image Source="../Images/plus.png"/>
+            <Button.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="White" Offset="0.01"/>
+                    <GradientStop Color="Gray" Offset="0.8"/>
+                    <GradientStop/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <DataGrid Name="dataGridBuses" CanUserResizeRows="False" CanUserSortColumns="True" CanUserReorderColumns="True" SelectedItem="{Binding Match}" Background="White" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding Matches}" RowHeight="40" AutoGenerateColumns="False" Height="220" Width="740" Canvas.Left="22" Canvas.Top="229">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}" FontWeight="Bold">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Host" Width="150" Binding="{Binding Path=Host}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Guest" Width="150" Binding="{Binding Path=Guest}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Arena" Width="150" Binding="{Binding Path=Arena.Name}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Date" Width="150" Binding="{Binding Path=Date}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Result" Width="150" Binding="{Binding Result}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTemplateColumn Header="" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonEdit" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.EditCommand}">
+                                <Image Source="../Images/edit.png"/>
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="Gray" Offset="1.0"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonDelete" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommand}">
+                                <Image Source="../Images/delete.png"/>
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="Gray" Offset="1.0"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Canvas>
+</UserControl>

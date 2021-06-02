@@ -1,0 +1,86 @@
+﻿<Window x:Class="Baze_projekat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Baze_projekat"
+        xmlns:views="clr-namespace:Baze_projekat.Views"
+        xmlns:viewModels="clr-namespace:Baze_projekat.ViewModels"
+        mc:Ignorable="d"
+        Title="Basketball clubs" Height="650" Width="890" WindowStartupLocation="CenterScreen" Icon="Images/basket.png">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:ClubsViewModel}">
+            <views:CLubsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:PlayersViewModel}">
+            <views:PlayersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:PositionsViewModel}">
+            <views:PositionView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:PlayersPositionsViewModel}">
+            <views:PlayersPositionsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:LeagueViewModel}">
+            <views:LeagueView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:LicenseViewModel}">
+            <views:LicenseView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ClubLeagueViewModel}">
+            <views:ClubLeagueView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:FacilityViewModel}">
+            <views:FacilityView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MatchsVIewModel}">
+            <views:MatchsVIew/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:EmployeesVIewModel}">
+            <views:EmployeesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:PlayerCentarViewModel}">
+            <views:PlayerCentarView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="red" Offset="0.2"/>
+            <GradientStop Color="Blue" Offset="0.5"/>
+            <GradientStop Color="White" Offset="0.8"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Canvas>
+        <DockPanel Canvas.Left="0">
+            <Menu DockPanel.Dock="Top" Height="auto" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Padding="2">
+                
+                <MenuItem Header="Clubs" Command="{Binding NavCommand}" CommandParameter="clubs" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"/>
+                <MenuItem Header="Players" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="players"/>
+                <MenuItem Header="Pozitions" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="positions"/>
+                <MenuItem Header="Players on positions" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="playerposition"/>
+                <MenuItem Header="Leagues" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="leagues"/>
+                <MenuItem Header="Licenses" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="licenses"/>
+                <MenuItem Header="Clubs in leagues" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="clubleagues"/>
+                <MenuItem Header="Facilities" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="facilities"/>
+                <MenuItem Header="Matches" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="matches"/>
+                <MenuItem Header="Employees" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="employees"/>
+                <MenuItem Header="Treatment" Command="{Binding NavCommand}" Height="35" FontSize="12" Padding="10" Background="Transparent" FontWeight="Bold"
+                          CommandParameter="pc"/>
+            </Menu>
+        </DockPanel>
+        <Canvas Canvas.Top="70" Width="800" Height="550">
+            <ContentControl Canvas.Left="auto" Canvas.Right="auto" Content="{Binding CurrentViewModel}"/>
+        </Canvas>
+
+
+    </Canvas>
+</Window>

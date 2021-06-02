@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="Baze_projekat.Views.FacilityView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Baze_projekat.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas>
+        <GroupBox Name="addForm" Visibility="Hidden" Header="Add new facility" Width="450" Height="180" Foreground="White" Canvas.Left="20">
+            <Canvas>
+                <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120" Canvas.Left="128" Canvas.Top="29"/>
+                <Label Content="Name" Canvas.Left="21" Canvas.Top="29"/>
+                <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Address}" VerticalAlignment="Top" Width="120" Canvas.Left="128" Canvas.Top="59"/>
+                <Label Content="Address" Canvas.Left="21" Canvas.Top="59"/>
+                <ComboBox Name="combo" HorizontalAlignment="Left" Height="23" ItemsSource="{Binding Types}" SelectedItem="{Binding Type}" VerticalAlignment="Top" Width="120" Canvas.Left="130" Canvas.Top="89"/>
+                <Label Name="label" Content="Type" Canvas.Left="21" Canvas.Top="89"/>
+                <ComboBox HorizontalAlignment="Left" Height="23" ItemsSource="{Binding Clubs}" SelectedItem="{Binding Club}" VerticalAlignment="Top" Width="120" Canvas.Left="300" Canvas.Top="29"/>
+                <Label Content="Club" Canvas.Left="261" Canvas.Top="29"/>
+
+                <Button Content="Submit" Command="{Binding AddCommand}" Canvas.Left="203" Canvas.Top="128" Height="25" FontWeight="Bold"/>
+            </Canvas>
+        </GroupBox>
+
+        <Button x:Name="addBtn" Width="80" Height="30" Cursor="Hand" Command="{Binding ShowCommand}" Canvas.Left="21" Canvas.Top="190">
+            <Image Source="../Images/plus.png"/>
+            <Button.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="White" Offset="0.01"/>
+                    <GradientStop Color="Gray" Offset="0.8"/>
+                    <GradientStop/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <DataGrid Name="dataGridBuses" CanUserResizeRows="False" CanUserSortColumns="True" CanUserReorderColumns="True" SelectedItem="{Binding SelectedFacility}" Background="White" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding Facilities}" RowHeight="40" AutoGenerateColumns="False" Height="220" Width="740" Canvas.Left="22" Canvas.Top="229">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="*" Binding="{Binding Path=Id}" FontWeight="Bold">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Name" Width="150" Binding="{Binding Path=Name}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Address" Width="150" Binding="{Binding Path=Address}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Width="150" Binding="{Binding Path=Type}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                
+                
+
+                <DataGridTemplateColumn Header="" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonEdit" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.EditCommand}">
+                                <Image Source="../Images/edit.png"/>
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="Gray" Offset="1.0"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonDelete" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteCommand}">
+                                <Image Source="../Images/delete.png"/>
+                                <Button.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="White" Offset="0.0"/>
+                                        <GradientStop Color="Gray" Offset="1.0"/>
+                                        <GradientStop/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Canvas>
+</UserControl>
