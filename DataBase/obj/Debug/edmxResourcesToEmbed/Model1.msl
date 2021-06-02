@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="BasketballClubs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.BasketballClub)">
+        <MappingFragment StoreEntitySet="BasketballClubs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Licenses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.License)">
+        <MappingFragment StoreEntitySet="Licenses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameOfTeam" ColumnName="NameOfTeam" />
+          <ScalarProperty Name="NameOfLeague" ColumnName="NameOfLeague" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leagues">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.League)">
+        <MappingFragment StoreEntitySet="Leagues">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NumberOfClubs" ColumnName="NumberOfClubs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClubLeagues">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ClubLeague)">
+        <MappingFragment StoreEntitySet="ClubLeagues">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Position)">
+        <MappingFragment StoreEntitySet="Positions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerPositions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.PlayerPosition)">
+        <MappingFragment StoreEntitySet="PlayerPositions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Employee)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Economist)">
+        <MappingFragment StoreEntitySet="Employees_Economist">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ArenaId" ColumnName="ArenaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Seller)">
+        <MappingFragment StoreEntitySet="Employees_Seller">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MedicalStaff)">
+        <MappingFragment StoreEntitySet="Employees_MedicalStaff">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MedicalCenterId" ColumnName="MedicalCenterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facilities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Facility)">
+        <MappingFragment StoreEntitySet="Facilities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Arena)">
+        <MappingFragment StoreEntitySet="Facilities_Arena">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Shop)">
+        <MappingFragment StoreEntitySet="Facilities_Shop">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MedicalCenter)">
+        <MappingFragment StoreEntitySet="Facilities_MedicalCenter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matches">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Match)">
+        <MappingFragment StoreEntitySet="Matches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Guest" ColumnName="Guest" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="ArenaId" ColumnName="ArenaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerCenters">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.PlayerCenter)">
+        <MappingFragment StoreEntitySet="PlayerCenters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="MedicalCenterId" ColumnName="MedicalCenterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

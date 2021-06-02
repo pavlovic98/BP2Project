@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="BasketballClubs" EntityType="Model1.Store.BasketballClubs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Licenses" EntityType="Model1.Store.Licenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Leagues" EntityType="Model1.Store.Leagues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClubLeagues" EntityType="Model1.Store.ClubLeagues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="Model1.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Positions" EntityType="Model1.Store.Positions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlayerPositions" EntityType="Model1.Store.PlayerPositions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="Model1.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Facilities" EntityType="Model1.Store.Facilities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Matches" EntityType="Model1.Store.Matches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlayerCenters" EntityType="Model1.Store.PlayerCenters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees_Economist" EntityType="Model1.Store.Employees_Economist" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Facilities_Arena" EntityType="Model1.Store.Facilities_Arena" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Facilities_Shop" EntityType="Model1.Store.Facilities_Shop" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees_Seller" EntityType="Model1.Store.Employees_Seller" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Facilities_MedicalCenter" EntityType="Model1.Store.Facilities_MedicalCenter" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees_MedicalStaff" EntityType="Model1.Store.Employees_MedicalStaff" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PlayerPlayerPosition" Association="Model1.Store.PlayerPlayerPosition">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="PlayerPosition" EntitySet="PlayerPositions" />
+    </AssociationSet>
+    <AssociationSet Name="PositionPlayerPosition" Association="Model1.Store.PositionPlayerPosition">
+      <End Role="Position" EntitySet="Positions" />
+      <End Role="PlayerPosition" EntitySet="PlayerPositions" />
+    </AssociationSet>
+    <AssociationSet Name="BasketballClubBasketballClub" Association="Model1.Store.BasketballClubBasketballClub">
+      <End Role="BasketballClub" EntitySet="BasketballClubs" />
+      <End Role="BasketballClub1" EntitySet="BasketballClubs" />
+    </AssociationSet>
+    <AssociationSet Name="BasketballClubLicense" Association="Model1.Store.BasketballClubLicense">
+      <End Role="BasketballClub" EntitySet="BasketballClubs" />
+      <End Role="License" EntitySet="Licenses" />
+    </AssociationSet>
+    <AssociationSet Name="BasketballClubClubLeague" Association="Model1.Store.BasketballClubClubLeague">
+      <End Role="BasketballClub" EntitySet="BasketballClubs" />
+      <End Role="ClubLeague" EntitySet="ClubLeagues" />
+    </AssociationSet>
+    <AssociationSet Name="LeagueClubLeague" Association="Model1.Store.LeagueClubLeague">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="ClubLeague" EntitySet="ClubLeagues" />
+    </AssociationSet>
+    <AssociationSet Name="LeagueLicense" Association="Model1.Store.LeagueLicense">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="License" EntitySet="Licenses" />
+    </AssociationSet>
+    <AssociationSet Name="BasketballClubPlayer" Association="Model1.Store.BasketballClubPlayer">
+      <End Role="BasketballClub" EntitySet="BasketballClubs" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="EconomistArena" Association="Model1.Store.EconomistArena">
+      <End Role="Economist" EntitySet="Employees_Economist" />
+      <End Role="Arena" EntitySet="Facilities_Arena" />
+    </AssociationSet>
+    <AssociationSet Name="ShopSeller" Association="Model1.Store.ShopSeller">
+      <End Role="Shop" EntitySet="Facilities_Shop" />
+      <End Role="Seller" EntitySet="Employees_Seller" />
+    </AssociationSet>
+    <AssociationSet Name="MedicalCenterMedicalStaff" Association="Model1.Store.MedicalCenterMedicalStaff">
+      <End Role="MedicalCenter" EntitySet="Facilities_MedicalCenter" />
+      <End Role="MedicalStaff" EntitySet="Employees_MedicalStaff" />
+    </AssociationSet>
+    <AssociationSet Name="MatchArena" Association="Model1.Store.MatchArena">
+      <End Role="Match" EntitySet="Matches" />
+      <End Role="Arena" EntitySet="Facilities_Arena" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerPlayerCenter" Association="Model1.Store.PlayerPlayerCenter">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="PlayerCenter" EntitySet="PlayerCenters" />
+    </AssociationSet>
+    <AssociationSet Name="MedicalCenterPlayerCenter" Association="Model1.Store.MedicalCenterPlayerCenter">
+      <End Role="MedicalCenter" EntitySet="Facilities_MedicalCenter" />
+      <End Role="PlayerCenter" EntitySet="PlayerCenters" />
+    </AssociationSet>
+    <AssociationSet Name="BasketballClubEmployee" Association="Model1.Store.BasketballClubEmployee">
+      <End Role="BasketballClub" EntitySet="BasketballClubs" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="BasketballClubFacility" Association="Model1.Store.BasketballClubFacility">
+      <End Role="BasketballClub" EntitySet="BasketballClubs" />
+      <End Role="Facility" EntitySet="Facilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Economist_inherits_Employee" Association="Model1.Store.FK_Economist_inherits_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Economist" EntitySet="Employees_Economist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Arena_inherits_Facility" Association="Model1.Store.FK_Arena_inherits_Facility">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Arena" EntitySet="Facilities_Arena" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shop_inherits_Facility" Association="Model1.Store.FK_Shop_inherits_Facility">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Shop" EntitySet="Facilities_Shop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seller_inherits_Employee" Association="Model1.Store.FK_Seller_inherits_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Seller" EntitySet="Employees_Seller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalCenter_inherits_Facility" Association="Model1.Store.FK_MedicalCenter_inherits_Facility">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="MedicalCenter" EntitySet="Facilities_MedicalCenter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalStaff_inherits_Employee" Association="Model1.Store.FK_MedicalStaff_inherits_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="MedicalStaff" EntitySet="Employees_MedicalStaff" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BasketballClubs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BasketballClubId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Licenses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameOfTeam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NameOfLeague" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BasketballClubId" Type="int" Nullable="true" />
+    <Property Name="LeagueId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Leagues">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumberOfClubs" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClubLeagues">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BasketballClubId" Type="int" Nullable="false" />
+    <Property Name="LeagueId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="BasketballClubId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Positions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlayerPositions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="PositionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BasketballClubId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facilities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BasketballClubId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Matches">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Guest" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Host" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Result" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ArenaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlayerCenters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="MedicalCenterId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees_Economist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ArenaId" Type="int" Nullable="true" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facilities_Arena">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facilities_Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees_Seller">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ShopId" Type="int" Nullable="true" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facilities_MedicalCenter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees_MedicalStaff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="MedicalCenterId" Type="int" Nullable="true" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PlayerPlayerPosition">
+    <End Role="Player" Type="Model1.Store.Players" Multiplicity="1" />
+    <End Role="PlayerPosition" Type="Model1.Store.PlayerPositions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerPosition">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PositionPlayerPosition">
+    <End Role="Position" Type="Model1.Store.Positions" Multiplicity="1" />
+    <End Role="PlayerPosition" Type="Model1.Store.PlayerPositions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerPosition">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BasketballClubBasketballClub">
+    <End Role="BasketballClub" Type="Model1.Store.BasketballClubs" Multiplicity="0..1" />
+    <End Role="BasketballClub1" Type="Model1.Store.BasketballClubs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasketballClub">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BasketballClub1">
+        <PropertyRef Name="BasketballClubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BasketballClubLicense">
+    <End Role="BasketballClub" Type="Model1.Store.BasketballClubs" Multiplicity="0..1" />
+    <End Role="License" Type="Model1.Store.Licenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasketballClub">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="License">
+        <PropertyRef Name="BasketballClubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BasketballClubClubLeague">
+    <End Role="BasketballClub" Type="Model1.Store.BasketballClubs" Multiplicity="1" />
+    <End Role="ClubLeague" Type="Model1.Store.ClubLeagues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasketballClub">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClubLeague">
+        <PropertyRef Name="BasketballClubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LeagueClubLeague">
+    <End Role="League" Type="Model1.Store.Leagues" Multiplicity="1" />
+    <End Role="ClubLeague" Type="Model1.Store.ClubLeagues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClubLeague">
+        <PropertyRef Name="LeagueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LeagueLicense">
+    <End Role="League" Type="Model1.Store.Leagues" Multiplicity="0..1" />
+    <End Role="License" Type="Model1.Store.Licenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="License">
+        <PropertyRef Name="LeagueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BasketballClubPlayer">
+    <End Role="BasketballClub" Type="Model1.Store.BasketballClubs" Multiplicity="0..1" />
+    <End Role="Player" Type="Model1.Store.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasketballClub">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="BasketballClubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EconomistArena">
+    <End Role="Economist" Type="Model1.Store.Employees_Economist" Multiplicity="*" />
+    <End Role="Arena" Type="Model1.Store.Facilities_Arena" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Arena">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Economist">
+        <PropertyRef Name="ArenaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ShopSeller">
+    <End Role="Shop" Type="Model1.Store.Facilities_Shop" Multiplicity="0..1" />
+    <End Role="Seller" Type="Model1.Store.Employees_Seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seller">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MedicalCenterMedicalStaff">
+    <End Role="MedicalCenter" Type="Model1.Store.Facilities_MedicalCenter" Multiplicity="0..1" />
+    <End Role="MedicalStaff" Type="Model1.Store.Employees_MedicalStaff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalCenter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalStaff">
+        <PropertyRef Name="MedicalCenterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MatchArena">
+    <End Role="Match" Type="Model1.Store.Matches" Multiplicity="*" />
+    <End Role="Arena" Type="Model1.Store.Facilities_Arena" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Arena">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Match">
+        <PropertyRef Name="ArenaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerPlayerCenter">
+    <End Role="Player" Type="Model1.Store.Players" Multiplicity="1" />
+    <End Role="PlayerCenter" Type="Model1.Store.PlayerCenters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerCenter">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MedicalCenterPlayerCenter">
+    <End Role="MedicalCenter" Type="Model1.Store.Facilities_MedicalCenter" Multiplicity="1" />
+    <End Role="PlayerCenter" Type="Model1.Store.PlayerCenters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MedicalCenter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlayerCenter">
+        <PropertyRef Name="MedicalCenterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BasketballClubEmployee">
+    <End Role="BasketballClub" Type="Model1.Store.BasketballClubs" Multiplicity="1" />
+    <End Role="Employee" Type="Model1.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasketballClub">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="BasketballClubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BasketballClubFacility">
+    <End Role="BasketballClub" Type="Model1.Store.BasketballClubs" Multiplicity="1" />
+    <End Role="Facility" Type="Model1.Store.Facilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BasketballClub">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Facility">
+        <PropertyRef Name="BasketballClubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Economist_inherits_Employee">
+    <End Role="Employee" Type="Model1.Store.Employees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Economist" Type="Model1.Store.Employees_Economist" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Economist">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Arena_inherits_Facility">
+    <End Role="Facility" Type="Model1.Store.Facilities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Arena" Type="Model1.Store.Facilities_Arena" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Arena">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shop_inherits_Facility">
+    <End Role="Facility" Type="Model1.Store.Facilities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Shop" Type="Model1.Store.Facilities_Shop" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shop">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seller_inherits_Employee">
+    <End Role="Employee" Type="Model1.Store.Employees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Seller" Type="Model1.Store.Employees_Seller" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seller">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalCenter_inherits_Facility">
+    <End Role="Facility" Type="Model1.Store.Facilities" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MedicalCenter" Type="Model1.Store.Facilities_MedicalCenter" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalCenter">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalStaff_inherits_Employee">
+    <End Role="Employee" Type="Model1.Store.Employees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MedicalStaff" Type="Model1.Store.Employees_MedicalStaff" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalStaff">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BasketballClubs" EntityType="Model1.BasketballClub" />
+          <EntitySet Name="Licenses" EntityType="Model1.License" />
+          <EntitySet Name="Leagues" EntityType="Model1.League" />
+          <EntitySet Name="ClubLeagues" EntityType="Model1.ClubLeague" />
+          <EntitySet Name="Players" EntityType="Model1.Player" />
+          <EntitySet Name="Positions" EntityType="Model1.Position" />
+          <EntitySet Name="PlayerPositions" EntityType="Model1.PlayerPosition" />
+          <AssociationSet Name="PlayerPlayerPosition" Association="Model1.PlayerPlayerPosition">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="PlayerPosition" EntitySet="PlayerPositions" />
+          </AssociationSet>
+          <AssociationSet Name="PositionPlayerPosition" Association="Model1.PositionPlayerPosition">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="PlayerPosition" EntitySet="PlayerPositions" />
+          </AssociationSet>
+          <AssociationSet Name="BasketballClubBasketballClub" Association="Model1.BasketballClubBasketballClub">
+            <End Role="BasketballClub" EntitySet="BasketballClubs" />
+            <End Role="BasketballClub1" EntitySet="BasketballClubs" />
+          </AssociationSet>
+          <AssociationSet Name="BasketballClubLicense" Association="Model1.BasketballClubLicense">
+            <End Role="BasketballClub" EntitySet="BasketballClubs" />
+            <End Role="License" EntitySet="Licenses" />
+          </AssociationSet>
+          <AssociationSet Name="BasketballClubClubLeague" Association="Model1.BasketballClubClubLeague">
+            <End Role="BasketballClub" EntitySet="BasketballClubs" />
+            <End Role="ClubLeague" EntitySet="ClubLeagues" />
+          </AssociationSet>
+          <AssociationSet Name="LeagueClubLeague" Association="Model1.LeagueClubLeague">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="ClubLeague" EntitySet="ClubLeagues" />
+          </AssociationSet>
+          <AssociationSet Name="LeagueLicense" Association="Model1.LeagueLicense">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="License" EntitySet="Licenses" />
+          </AssociationSet>
+          <AssociationSet Name="BasketballClubPlayer" Association="Model1.BasketballClubPlayer">
+            <End Role="BasketballClub" EntitySet="BasketballClubs" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <EntitySet Name="Employees" EntityType="Model1.Employee" />
+          <EntitySet Name="Facilities" EntityType="Model1.Facility" />
+          <AssociationSet Name="EconomistArena" Association="Model1.EconomistArena">
+            <End Role="Economist" EntitySet="Employees" />
+            <End Role="Arena" EntitySet="Facilities" />
+          </AssociationSet>
+          <AssociationSet Name="ShopSeller" Association="Model1.ShopSeller">
+            <End Role="Shop" EntitySet="Facilities" />
+            <End Role="Seller" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="MedicalCenterMedicalStaff" Association="Model1.MedicalCenterMedicalStaff">
+            <End Role="MedicalCenter" EntitySet="Facilities" />
+            <End Role="MedicalStaff" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Matches" EntityType="Model1.Match" />
+          <AssociationSet Name="MatchArena" Association="Model1.MatchArena">
+            <End Role="Match" EntitySet="Matches" />
+            <End Role="Arena" EntitySet="Facilities" />
+          </AssociationSet>
+          <EntitySet Name="PlayerCenters" EntityType="Model1.PlayerCenter" />
+          <AssociationSet Name="PlayerPlayerCenter" Association="Model1.PlayerPlayerCenter">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="PlayerCenter" EntitySet="PlayerCenters" />
+          </AssociationSet>
+          <AssociationSet Name="MedicalCenterPlayerCenter" Association="Model1.MedicalCenterPlayerCenter">
+            <End Role="MedicalCenter" EntitySet="Facilities" />
+            <End Role="PlayerCenter" EntitySet="PlayerCenters" />
+          </AssociationSet>
+          <AssociationSet Name="BasketballClubEmployee" Association="Model1.BasketballClubEmployee">
+            <End Role="BasketballClub" EntitySet="BasketballClubs" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="BasketballClubFacility" Association="Model1.BasketballClubFacility">
+            <End Role="BasketballClub" EntitySet="BasketballClubs" />
+            <End Role="Facility" EntitySet="Facilities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BasketballClub">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="YouthClubs" Relationship="Model1.BasketballClubBasketballClub" FromRole="BasketballClub" ToRole="BasketballClub1" />
+          <NavigationProperty Name="SupperiorClub" Relationship="Model1.BasketballClubBasketballClub" FromRole="BasketballClub1" ToRole="BasketballClub" />
+          <Property Name="BasketballClubId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Licenses" Relationship="Model1.BasketballClubLicense" FromRole="BasketballClub" ToRole="License" />
+          <NavigationProperty Name="ClubLeagues" Relationship="Model1.BasketballClubClubLeague" FromRole="BasketballClub" ToRole="ClubLeague" />
+          <NavigationProperty Name="Players" Relationship="Model1.BasketballClubPlayer" FromRole="BasketballClub" ToRole="Player" />
+          <NavigationProperty Name="Employees" Relationship="Model1.BasketballClubEmployee" FromRole="BasketballClub" ToRole="Employee" />
+          <NavigationProperty Name="Facilities" Relationship="Model1.BasketballClubFacility" FromRole="BasketballClub" ToRole="Facility" />
+        </EntityType>
+        <EntityType Name="License">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfTeam" Type="String" Nullable="false" />
+          <Property Name="NameOfLeague" Type="String" Nullable="false" />
+          <NavigationProperty Name="BasketballClub" Relationship="Model1.BasketballClubLicense" FromRole="License" ToRole="BasketballClub" />
+          <Property Name="BasketballClubId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="League" Relationship="Model1.LeagueLicense" FromRole="License" ToRole="League" />
+          <Property Name="LeagueId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="NumberOfClubs" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ClubLeagues" Relationship="Model1.LeagueClubLeague" FromRole="League" ToRole="ClubLeague" />
+          <NavigationProperty Name="Licenses" Relationship="Model1.LeagueLicense" FromRole="League" ToRole="License" />
+        </EntityType>
+        <EntityType Name="ClubLeague">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BasketballClub" Relationship="Model1.BasketballClubClubLeague" FromRole="ClubLeague" ToRole="BasketballClub" />
+          <Property Name="BasketballClubId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="League" Relationship="Model1.LeagueClubLeague" FromRole="ClubLeague" ToRole="League" />
+          <Property Name="LeagueId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Age" Type="String" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PlayerPositions" Relationship="Model1.PlayerPlayerPosition" FromRole="Player" ToRole="PlayerPosition" />
+          <NavigationProperty Name="BasketballClub" Relationship="Model1.BasketballClubPlayer" FromRole="Player" ToRole="BasketballClub" />
+          <Property Name="BasketballClubId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="PlayerCenters" Relationship="Model1.PlayerPlayerCenter" FromRole="Player" ToRole="PlayerCenter" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="PlayerPositions" Relationship="Model1.PositionPlayerPosition" FromRole="Position" ToRole="PlayerPosition" />
+        </EntityType>
+        <EntityType Name="PlayerPosition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Player" Relationship="Model1.PlayerPlayerPosition" FromRole="PlayerPosition" ToRole="Player" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Position" Relationship="Model1.PositionPlayerPosition" FromRole="PlayerPosition" ToRole="Position" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PlayerPlayerPosition">
+          <End Type="Model1.Player" Role="Player" Multiplicity="1" />
+          <End Type="Model1.PlayerPosition" Role="PlayerPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerPosition">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PositionPlayerPosition">
+          <End Type="Model1.Position" Role="Position" Multiplicity="1" />
+          <End Type="Model1.PlayerPosition" Role="PlayerPosition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerPosition">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketballClubBasketballClub">
+          <End Type="Model1.BasketballClub" Role="BasketballClub" Multiplicity="0..1" />
+          <End Type="Model1.BasketballClub" Role="BasketballClub1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketballClub">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BasketballClub1">
+              <PropertyRef Name="BasketballClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketballClubLicense">
+          <End Type="Model1.BasketballClub" Role="BasketballClub" Multiplicity="0..1" />
+          <End Type="Model1.License" Role="License" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketballClub">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="License">
+              <PropertyRef Name="BasketballClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketballClubClubLeague">
+          <End Type="Model1.BasketballClub" Role="BasketballClub" Multiplicity="1" />
+          <End Type="Model1.ClubLeague" Role="ClubLeague" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketballClub">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClubLeague">
+              <PropertyRef Name="BasketballClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LeagueClubLeague">
+          <End Type="Model1.League" Role="League" Multiplicity="1" />
+          <End Type="Model1.ClubLeague" Role="ClubLeague" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClubLeague">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LeagueLicense">
+          <End Type="Model1.League" Role="League" Multiplicity="0..1" />
+          <End Type="Model1.License" Role="License" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="License">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketballClubPlayer">
+          <End Type="Model1.BasketballClub" Role="BasketballClub" Multiplicity="0..1" />
+          <End Type="Model1.Player" Role="Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketballClub">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="BasketballClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="BasketballClub" Relationship="Model1.BasketballClubEmployee" FromRole="Employee" ToRole="BasketballClub" />
+          <Property Name="BasketballClubId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="BasketballClub" Relationship="Model1.BasketballClubFacility" FromRole="Facility" ToRole="BasketballClub" />
+          <Property Name="BasketballClubId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Economist" BaseType="Model1.Employee" >
+          <NavigationProperty Name="Arena" Relationship="Model1.EconomistArena" FromRole="Economist" ToRole="Arena" />
+          <Property Name="ArenaId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Arena" BaseType="Model1.Facility" >
+          <NavigationProperty Name="Economists" Relationship="Model1.EconomistArena" FromRole="Arena" ToRole="Economist" />
+          <NavigationProperty Name="Matches" Relationship="Model1.MatchArena" FromRole="Arena" ToRole="Match" />
+        </EntityType>
+        <EntityType Name="Shop" BaseType="Model1.Facility" >
+          <NavigationProperty Name="Sellers" Relationship="Model1.ShopSeller" FromRole="Shop" ToRole="Seller" />
+        </EntityType>
+        <EntityType Name="Seller" BaseType="Model1.Employee" >
+          <NavigationProperty Name="Shop" Relationship="Model1.ShopSeller" FromRole="Seller" ToRole="Shop" />
+          <Property Name="ShopId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MedicalStaff" BaseType="Model1.Employee" >
+          <NavigationProperty Name="MedicalCenter" Relationship="Model1.MedicalCenterMedicalStaff" FromRole="MedicalStaff" ToRole="MedicalCenter" />
+          <Property Name="MedicalCenterId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="MedicalCenter" BaseType="Model1.Facility" >
+          <NavigationProperty Name="MedicalStaffs" Relationship="Model1.MedicalCenterMedicalStaff" FromRole="MedicalCenter" ToRole="MedicalStaff" />
+          <NavigationProperty Name="PlayerCenters" Relationship="Model1.MedicalCenterPlayerCenter" FromRole="MedicalCenter" ToRole="PlayerCenter" />
+        </EntityType>
+        <Association Name="EconomistArena">
+          <End Type="Model1.Economist" Role="Economist" Multiplicity="*" />
+          <End Type="Model1.Arena" Role="Arena" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Arena">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Economist">
+              <PropertyRef Name="ArenaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ShopSeller">
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="0..1" />
+          <End Type="Model1.Seller" Role="Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seller">
+              <PropertyRef Name="ShopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedicalCenterMedicalStaff">
+          <End Type="Model1.MedicalCenter" Role="MedicalCenter" Multiplicity="0..1" />
+          <End Type="Model1.MedicalStaff" Role="MedicalStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCenter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalStaff">
+              <PropertyRef Name="MedicalCenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" Nullable="false" />
+          <Property Name="Guest" Type="String" Nullable="false" />
+          <Property Name="Host" Type="String" Nullable="false" />
+          <Property Name="Result" Type="String" Nullable="false" />
+          <NavigationProperty Name="Arena" Relationship="Model1.MatchArena" FromRole="Match" ToRole="Arena" />
+          <Property Name="ArenaId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="MatchArena">
+          <End Type="Model1.Match" Role="Match" Multiplicity="*" />
+          <End Type="Model1.Arena" Role="Arena" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Arena">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="ArenaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PlayerCenter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Player" Relationship="Model1.PlayerPlayerCenter" FromRole="PlayerCenter" ToRole="Player" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalCenter" Relationship="Model1.MedicalCenterPlayerCenter" FromRole="PlayerCenter" ToRole="MedicalCenter" />
+          <Property Name="MedicalCenterId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PlayerPlayerCenter">
+          <End Type="Model1.Player" Role="Player" Multiplicity="1" />
+          <End Type="Model1.PlayerCenter" Role="PlayerCenter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerCenter">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedicalCenterPlayerCenter">
+          <End Type="Model1.MedicalCenter" Role="MedicalCenter" Multiplicity="1" />
+          <End Type="Model1.PlayerCenter" Role="PlayerCenter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCenter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlayerCenter">
+              <PropertyRef Name="MedicalCenterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketballClubEmployee">
+          <End Type="Model1.BasketballClub" Role="BasketballClub" Multiplicity="1" />
+          <End Type="Model1.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketballClub">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="BasketballClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BasketballClubFacility">
+          <End Type="Model1.BasketballClub" Role="BasketballClub" Multiplicity="1" />
+          <End Type="Model1.Facility" Role="Facility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketballClub">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Facility">
+              <PropertyRef Name="BasketballClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="BasketballClubs">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.BasketballClub)">
+        <MappingFragment StoreEntitySet="BasketballClubs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Licenses">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.License)">
+        <MappingFragment StoreEntitySet="Licenses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameOfTeam" ColumnName="NameOfTeam" />
+          <ScalarProperty Name="NameOfLeague" ColumnName="NameOfLeague" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leagues">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.League)">
+        <MappingFragment StoreEntitySet="Leagues">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NumberOfClubs" ColumnName="NumberOfClubs" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClubLeagues">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ClubLeague)">
+        <MappingFragment StoreEntitySet="ClubLeagues">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+          <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Position)">
+        <MappingFragment StoreEntitySet="Positions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerPositions">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.PlayerPosition)">
+        <MappingFragment StoreEntitySet="PlayerPositions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Employee)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Economist)">
+        <MappingFragment StoreEntitySet="Employees_Economist">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ArenaId" ColumnName="ArenaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Seller)">
+        <MappingFragment StoreEntitySet="Employees_Seller">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MedicalStaff)">
+        <MappingFragment StoreEntitySet="Employees_MedicalStaff">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MedicalCenterId" ColumnName="MedicalCenterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facilities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Facility)">
+        <MappingFragment StoreEntitySet="Facilities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="BasketballClubId" ColumnName="BasketballClubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Arena)">
+        <MappingFragment StoreEntitySet="Facilities_Arena">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Shop)">
+        <MappingFragment StoreEntitySet="Facilities_Shop">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MedicalCenter)">
+        <MappingFragment StoreEntitySet="Facilities_MedicalCenter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matches">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Match)">
+        <MappingFragment StoreEntitySet="Matches">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Guest" ColumnName="Guest" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="ArenaId" ColumnName="ArenaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerCenters">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.PlayerCenter)">
+        <MappingFragment StoreEntitySet="PlayerCenters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="MedicalCenterId" ColumnName="MedicalCenterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

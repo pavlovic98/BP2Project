@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b350a905f471401183b58442595f73e8" Name="Diagram1" ZoomLevel="64" >
+        <EntityTypeShape EntityType="Model1.BasketballClub" Width="1.5" PointX="1.375" PointY="3.375" />
+        <EntityTypeShape EntityType="Model1.License" Width="1.5" PointX="1.375" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.League" Width="1.5" PointX="8.25" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.ClubLeague" Width="1.5" PointX="8.25" PointY="3.125" />
+        <EntityTypeShape EntityType="Model1.Player" Width="1.5" PointX="12.375" PointY="6.125" />
+        <EntityTypeShape EntityType="Model1.Position" Width="1.5" PointX="18.625" PointY="6" />
+        <EntityTypeShape EntityType="Model1.PlayerPosition" Width="1.5" PointX="16.25" PointY="5.75" />
+        <AssociationConnector Association="Model1.PlayerPlayerPosition" />
+        <AssociationConnector Association="Model1.PositionPlayerPosition" />
+        <AssociationConnector Association="Model1.BasketballClubBasketballClub" />
+        <AssociationConnector Association="Model1.BasketballClubLicense" />
+        <AssociationConnector Association="Model1.BasketballClubClubLeague" />
+        <AssociationConnector Association="Model1.LeagueClubLeague" />
+        <AssociationConnector Association="Model1.LeagueLicense" />
+        <AssociationConnector Association="Model1.BasketballClubPlayer" />
+        <EntityTypeShape EntityType="Model1.Employee" Width="1.5" PointX="2.625" PointY="9.375" />
+        <EntityTypeShape EntityType="Model1.Facility" Width="1.5" PointX="13.875" PointY="9.5" />
+        <EntityTypeShape EntityType="Model1.Economist" Width="1.5" PointX="6.375" PointY="10.75" />
+        <InheritanceConnector EntityType="Model1.Economist" />
+        <EntityTypeShape EntityType="Model1.Arena" Width="1.5" PointX="9.75" PointY="10.875" />
+        <InheritanceConnector EntityType="Model1.Arena" />
+        <EntityTypeShape EntityType="Model1.Shop" Width="1.5" PointX="9.75" PointY="12.75" />
+        <InheritanceConnector EntityType="Model1.Shop" />
+        <EntityTypeShape EntityType="Model1.Seller" Width="1.5" PointX="6.25" PointY="12.75" />
+        <InheritanceConnector EntityType="Model1.Seller" />
+        <EntityTypeShape EntityType="Model1.MedicalStaff" Width="1.5" PointX="6.25" PointY="15.125" />
+        <InheritanceConnector EntityType="Model1.MedicalStaff" />
+        <EntityTypeShape EntityType="Model1.MedicalCenter" Width="1.5" PointX="9.5" PointY="15" />
+        <InheritanceConnector EntityType="Model1.MedicalCenter" />
+        <AssociationConnector Association="Model1.EconomistArena" />
+        <AssociationConnector Association="Model1.ShopSeller" />
+        <AssociationConnector Association="Model1.MedicalCenterMedicalStaff" />
+        <EntityTypeShape EntityType="Model1.Match" Width="1.5" PointX="6.375" PointY="8.25" />
+        <AssociationConnector Association="Model1.MatchArena" />
+        <EntityTypeShape EntityType="Model1.PlayerCenter" Width="1.5" PointX="13.875" PointY="15.5" />
+        <AssociationConnector Association="Model1.PlayerPlayerCenter" />
+        <AssociationConnector Association="Model1.MedicalCenterPlayerCenter" />
+        <AssociationConnector Association="Model1.BasketballClubEmployee" />
+        <AssociationConnector Association="Model1.BasketballClubFacility" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
